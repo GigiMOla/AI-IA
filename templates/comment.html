@@ -13,17 +13,19 @@
         </li>
     </ul>
 
-    <h3 style="margin-top: 20px;">Add a Comment</h3>
-    <form method="POST" action="{{ url_for('comment', review_id=review.id) }}">
-        {{ form.hidden_tag() }}
-        <div>
-            {{ form.content.label }}<br>
-            {{ form.content(class="form-control") }}<br>
-            {{ form.submit(class="btn btn-primary") }}
-        </div>
-        <br><br><br>
-        <hr>
-    </form>
+    {% if current_user.is_authenticated %}
+        <h3 style="margin-top: 20px;">Add a Comment</h3>
+        <form method="POST" action="{{ url_for('comment', review_id=review.id) }}">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.content.label }}<br>
+                {{ form.content(class="form-control") }}<br>
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+            <br><br><br>
+            <hr>
+        </form>
+    {% endif %}
 
     <h2>Comments</h2>
     <ul class="list-group">
